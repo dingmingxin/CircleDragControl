@@ -9,12 +9,12 @@
 #import "CircleDragView.h"
 #import <CoreGraphics/CoreGraphics.h>
 
-
+#define DOT_OFFSET 5.0
+#define CROSS_LINE_WIDTH 2.0
 
 @interface CircleDragView ()
 @property (strong) NSColor *lineColor;
 @property (strong) NSColor *defaultColor;
-@property (strong) NSBezierPath *bezierPath;
 @property (assign) BOOL canDragToResize;
 @property (assign) CGFloat lineWidth;
 @property (assign) CGFloat minWidth;
@@ -44,6 +44,7 @@
 }
 
 - (void)drawCircle {
+    //draw Circle
     NSColor *strokeColor = self.defaultColor;
     if (self.lineColor != NULL) {
         strokeColor = self.lineColor;
@@ -61,7 +62,36 @@
     [bezierPath closePath];
     [bezierPath stroke];
     
-    self.bezierPath = bezierPath;
+    
+    bezierPath = [NSBezierPath bezierPath];
+    [[NSColor lightGrayColor] setStroke];
+    [bezierPath moveToPoint:CGPointMake(center.x+(radius-self.lineWidth/2), center.y)];
+    [bezierPath lineToPoint:CGPointMake(center.x-(radius-self.lineWidth/2), center.y)];
+    [bezierPath setLineWidth:CROSS_LINE_WIDTH];
+    [bezierPath closePath];
+    [bezierPath stroke];
+
+    bezierPath = [NSBezierPath bezierPath];
+    [[NSColor lightGrayColor] setStroke];
+    [bezierPath moveToPoint:CGPointMake(center.x, center.y+(radius-self.lineWidth/2))];
+    [bezierPath lineToPoint:CGPointMake(center.x, center.y-(radius-self.lineWidth/2))];
+    [bezierPath setLineWidth:CROSS_LINE_WIDTH];
+    [bezierPath closePath];
+    [bezierPath stroke];
+
+    //draw center dot
+    bezierPath = [NSBezierPath bezierPath];
+    [[NSColor grayColor] setFill];
+    CGFloat dotOffset = DOT_OFFSET;
+    [bezierPath moveToPoint:CGPointMake(center.x, center.y+dotOffset)];
+    [bezierPath lineToPoint:CGPointMake(center.x+dotOffset, center.y)];
+    [bezierPath lineToPoint:CGPointMake(center.x, center.y-dotOffset)];
+    [bezierPath lineToPoint:CGPointMake(center.x-dotOffset, center.y)];
+    [bezierPath lineToPoint:CGPointMake(center.x, center.y+dotOffset)];
+    [bezierPath closePath];
+    [bezierPath fill];
+    
+    
 }
 
 - (void)mouseDragged:(NSEvent *)event {
