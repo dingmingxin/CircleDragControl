@@ -7,10 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class CircleDragView;
 
 @protocol CircleDragControlDelegate
 @optional
-- (void)targetDotClicked;
+- (void)targetDotClicked:(CircleDragView *)circleDragView;
 @end
 
 @interface CircleDragView : NSView

@@ -97,6 +97,7 @@
 }
 
 - (void)mouseDragged:(NSEvent *)event {
+    self.targetDotClick = FALSE;
     CGFloat deltaX = event.deltaX;
     CGFloat deltaY = event.deltaY;
     if (deltaX != 0 || deltaY != 0) {
@@ -151,8 +152,8 @@
 - (void)mouseUp:(NSEvent *)event {
     self.canDragToResize = FALSE;
     if (self.targetDotClick && self.delegate) {
-        if([(NSObject *)self.delegate respondsToSelector:NSSelectorFromString(@"targetDotClicked")]) {
-            [self.delegate targetDotClicked];
+        if([(NSObject *)self.delegate respondsToSelector:NSSelectorFromString(@"targetDotClicked:")]) {
+            [self.delegate targetDotClicked:self];
         }
     }
     self.targetDotClick = FALSE;

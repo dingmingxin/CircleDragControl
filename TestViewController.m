@@ -30,12 +30,11 @@
     [self.view addSubview:circleView];
 }
 
-- (void)targetDotClicked {
-    NSRect frame = self.circle.frame;
+- (void)targetDotClicked:(CircleDragView *)circle {
+    NSRect frame = circle.frame;
     CGPoint origin = frame.origin;
     CGSize size = frame.size;
     NSRect f = NSMakeRect(origin.x+size.width/2, origin.y+size.height/2, 2, 2);
-    
     [[BFColorPickerPopover sharedPopover] showRelativeToRect:f ofView:self.view preferredEdge:NSMaxXEdge];
 }
 
