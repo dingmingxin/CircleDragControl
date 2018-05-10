@@ -11,15 +11,13 @@
 
 
 
-@interface CircleDragView () {
-    @private
-    CGFloat minWidth;
-}
+@interface CircleDragView ()
 @property (strong) NSColor *lineColor;
 @property (strong) NSColor *defaultColor;
 @property (strong) NSBezierPath *bezierPath;
 @property (assign) BOOL canDragToResize;
 @property (assign) CGFloat lineWidth;
+@property (assign) CGFloat minWidth;
 @end
 
 @implementation CircleDragView
@@ -33,14 +31,14 @@
     self = [self initWithFrame:frame];
     if (self) {
         self.lineColor = lineColor;
-    }
-    self.lineWidth = width;
-    minWidth = 80.0f;
-    if (self.defaultColor == NULL) {
-        CGFloat r,g,b,a;
-        [[NSColor redColor] getRed:&r green:&g blue:&b alpha:&a];
-        self.defaultColor = [NSColor colorWithRed:r green:g blue:b alpha:0.5];
-        self.canDragToResize = FALSE;
+        self.lineWidth = width;
+        self.minWidth = 80.0f;
+        if (self.defaultColor == NULL) {
+            CGFloat r,g,b,a;
+            [[NSColor redColor] getRed:&r green:&g blue:&b alpha:&a];
+            self.defaultColor = [NSColor colorWithRed:r green:g blue:b alpha:0.5];
+            self.canDragToResize = FALSE;
+        }
     }
     return self;
 }
@@ -76,21 +74,17 @@
             return;
         }
         CGFloat min = MIN(originFrame.size.width, originFrame.size.height);
-
         NSPoint locationInView = [self convertPoint:[event locationInWindow] fromView:nil];
         NSPoint center = NSMakePoint(originFrame.size.width/2, originFrame.size.height/2);
         CGFloat xDist = locationInView.x - center.x;
         CGFloat yDist = locationInView.y - center.y;
-        NSLog(@"move, location: %f %f", locationInView.x, locationInView.y);
-        NSLog(@"xDist: %f yDist: %f", xDist, yDist);
         CGFloat distance = sqrt(xDist*xDist + yDist*yDist);
-        
         
         CGFloat width = distance*2;
         CGFloat newWidth = width;
         CGFloat newHeight = width;
         
-        if (width < min  && min <= minWidth) {
+        if (width < min  && min <= self.minWidth) {
             return;
         }
 
