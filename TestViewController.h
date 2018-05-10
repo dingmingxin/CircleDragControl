@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-@interface TestViewController : NSViewController
+#import "CircleDragView.h"
+@interface TestViewController : NSViewController<CircleDragControlDelegate>
 
 @end

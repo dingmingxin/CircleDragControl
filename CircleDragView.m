@@ -16,6 +16,7 @@
 @property (strong) NSColor *lineColor;
 @property (strong) NSColor *defaultColor;
 @property (assign) BOOL canDragToResize;
+@property (assign) BOOL targetDotClick;
 @property (assign) CGFloat lineWidth;
 @property (assign) CGFloat minWidth;
 @end
@@ -33,6 +34,7 @@
         self.lineColor = lineColor;
         self.lineWidth = width;
         self.minWidth = 80.0f;
+        self.targetDotClick = FALSE;
         if (self.defaultColor == NULL) {
             CGFloat r,g,b,a;
             [[NSColor redColor] getRed:&r green:&g blue:&b alpha:&a];
@@ -140,10 +142,20 @@
     else {
         self.canDragToResize = TRUE;
     }
+    
+    if (distance <= DOT_OFFSET) {
+        self.targetDotClick = TRUE;
+    }
 }
 
 - (void)mouseUp:(NSEvent *)event {
     self.canDragToResize = FALSE;
+    if (self.targetDotClick && self.delegate) {
+        if([(NSObject *)self.delegate respondsToSelector:NSSelectorFromString(@"targetDotClicked")]) {
+            [self.delegate targetDotClicked];
+        }
+    }
+    self.targetDotClick = FALSE;
 }
 
 @end

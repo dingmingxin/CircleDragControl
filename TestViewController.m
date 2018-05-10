@@ -8,9 +8,9 @@
 
 #import "TestViewController.h"
 #import "CircleDragView.h"
-
+#import "BFColorPickerPopover.h"
 @interface TestViewController ()
-
+@property (strong) CircleDragView *circle;
 @end
 
 @implementation TestViewController
@@ -23,12 +23,20 @@
     CGSize size = self.view.bounds.size;
     CGFloat rectWith = 100;
     CGRect frame = NSMakeRect(size.width/2-rectWith/2, size.height/2-rectWith/2, rectWith, rectWith);
-//    CircleDragView *circleView = [[CircleDragView alloc] initWithFrame:frame lineWidth:4 color:[NSColor greenColor]];
-    CircleDragView *circleView = [[CircleDragView alloc] initWithFrame:frame lineWidth:10 color:NULL];
-    [self.view addSubview:circleView];
     
-//    self.view.wantsLayer = YES;
-//    self.view.layer.backgroundColor = [[NSColor greenColor] CGColor];
+    CircleDragView *circleView = [[CircleDragView alloc] initWithFrame:frame lineWidth:10 color:NULL];
+    circleView.delegate = self;
+    self.circle = circleView;
+    [self.view addSubview:circleView];
+}
+
+- (void)targetDotClicked {
+    NSRect frame = self.circle.frame;
+    CGPoint origin = frame.origin;
+    CGSize size = frame.size;
+    NSRect f = NSMakeRect(origin.x+size.width/2, origin.y+size.height/2, 2, 2);
+    
+    [[BFColorPickerPopover sharedPopover] showRelativeToRect:f ofView:self.view preferredEdge:NSMaxXEdge];
 }
 
 @end

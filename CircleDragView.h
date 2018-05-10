@@ -8,6 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol CircleDragControlDelegate
+@optional
+- (void)targetDotClicked;
+@end
+
 @interface CircleDragView : NSView
+
+@property (assign) id<CircleDragControlDelegate> delegate;
 - (instancetype)initWithFrame:(NSRect)frame lineWidth:(CGFloat)width color:(NSColor *)lineColor;
 @end
+
+
+
+
