@@ -15,6 +15,7 @@
 		DE5BA97420A3EC4B001C51E3 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE5BA97320A3EC4B001C51E3 /* Storyboard.storyboard */; };
 		DE5BA97720A3EC9E001C51E3 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5BA97620A3EC9E001C51E3 /* TestViewController.m */; };
 		DE5BA98020A44824001C51E3 /* libBFColorPickerPopover.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5BA97F20A44824001C51E3 /* libBFColorPickerPopover.a */; };
+		DE5BA98320A52B68001C51E3 /* CircleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5BA98220A52B68001C51E3 /* CircleCollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		DE5BA97620A3EC9E001C51E3 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		DE5BA97D20A44824001C51E3 /* BFColorPickerPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFColorPickerPopover.h; sourceTree = "<group>"; };
 		DE5BA97F20A44824001C51E3 /* libBFColorPickerPopover.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBFColorPickerPopover.a; sourceTree = "<group>"; };
+		DE5BA98120A52B68001C51E3 /* CircleCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleCollectionView.h; sourceTree = "<group>"; };
+		DE5BA98220A52B68001C51E3 /* CircleCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleCollectionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +53,8 @@
 		DE5BA95320A3EA02001C51E3 = {
 			isa = PBXGroup;
 			children = (
+				DE5BA98120A52B68001C51E3 /* CircleCollectionView.h */,
+				DE5BA98220A52B68001C51E3 /* CircleCollectionView.m */,
 				DE5BA97520A3EC9E001C51E3 /* TestViewController.h */,
 				DE5BA97620A3EC9E001C51E3 /* TestViewController.m */,
 				DE5BA97320A3EC4B001C51E3 /* Storyboard.storyboard */,
@@ -186,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE5BA98320A52B68001C51E3 /* CircleCollectionView.m in Sources */,
 				DE5BA97220A3EA69001C51E3 /* CircleDragView.m in Sources */,
 				DE5BA96920A3EA04001C51E3 /* main.m in Sources */,
 				DE5BA97720A3EC9E001C51E3 /* TestViewController.m in Sources */,
